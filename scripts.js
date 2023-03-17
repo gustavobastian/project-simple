@@ -53,17 +53,35 @@ function generateGrid(ContainerName, document,blocks){
         for (let d=0;d<(blocks);d++){ 
             index=i*16+blocks;
             var altt=(960/blocks)+"px";            
-            console.log("alt:"+altt)
+            
             const insideComp = document.createElement('insideComp');            
             insideComp.setAttribute('style',
             'display:flex;justifyContent:center;\
             flex-direction:column;padding:0px;\
-            border-style:solid;background:gray;');    
+            border-style:solid;background:#0000;');    
             insideComp.style.height=altt;
             insideComp.style.width=altt;
             insideComp.setAttribute('id',index);            //for identify the point
-            insideComp.addEventListener("mouseenter",function(){insideComp.style.background='green';});
-            insideComp.addEventListener("mouseleave",function(){insideComp.style.background='red';});
+            //insideComp.addEventListener("mouseenter",function(){insideComp.style.background='green';}); //entering shows green
+
+            //uncomment next for painting with a fixed color after the mouse pass
+            /*
+            insideComp.addEventListener("mouseleave",
+            function(){
+                insideComp.style.background='red';
+            });
+            */
+
+            //uncomment next for painting with a random color after the mouse pass
+            insideComp.addEventListener("mouseleave",
+            function(){
+               
+                let randomColor = Math.floor(Math.random()*16777215).toString(16);
+                insideComp.style.background =  "#"+randomColor;
+                return;
+            });
+            
+            
             gridRow.appendChild(insideComp);
         }    
         gridContainer.appendChild(gridRow);
