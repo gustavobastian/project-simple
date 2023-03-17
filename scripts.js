@@ -16,17 +16,17 @@ content.style.justifyContent='center';
 
 container.appendChild(content);
 
-const rowsDefault=16;
-const colsDefault=16;
+const blocks=16;
 
-generateButton(container,document,rowsDefault,colsDefault);
-generateGrid(container,document,rowsDefault,colsDefault);
+
+generateButton(container,document,blocks);
+generateGrid(container,document,blocks);
 
 
 //function that generate the grid area
-function generateGrid(ContainerName, document,row,column){    
-    let iMax=parseInt(row);
-    let dMAx=parseInt(column);
+function generateGrid(ContainerName, document,blocks){    
+    let iMax=parseInt(blocks);
+    
     const gridContainer = document.createElement('gridCont');
     gridContainer.setAttribute("Id","GridContainerId");
     gridContainer.setAttribute('style',
@@ -34,27 +34,27 @@ function generateGrid(ContainerName, document,row,column){
     flex-direction:row;flex-wrap:wrap;\
     width:100%;text-content:center;\
     color:blue;font-size:40px;\
-    border-style:none;background:gray; padding-top:20px;padding-bottom:20px;');    
+    border-style:none;background:gray; \
+    padding-top:20px;padding-bottom:20px;');    
     gridContainer.style.justifyContent='center';    
     
     let index=0;
     //generating the grid
-    for (let i=0;i<(iMax);i++){
+    for (let i=0;i<(blocks);i++){
         const gridRow = document.createElement('gridRow');
         gridRow.setAttribute('style',
         'display:flex;justifyContent:center;\
-        flex-direction:row;flex-wrap:wrap;\
-        width:1600px;text-content:center;\
-        color:blue;font-size:40px;\
+        flex-direction:row;flex-wrap:none;\
+        width:960px;text-content:center;\
+        color:blue;\
         border-style:none;background:gray;');    
         gridRow.style.justifyContent='center'; 
-        for (let d=0;d<(dMAx);d++){ 
-            index=i*16+dMAx;
+        for (let d=0;d<(blocks);d++){ 
+            index=i*16+blocks;
             const insideComp = document.createElement('insideComp');            
             insideComp.setAttribute('style',
             'display:flex;justifyContent:center;\
-            flex-direction:column;flex-wrap:no-wrap;\
-            width:(100/16)px;padding:10px;\
+            flex-direction:column;padding:10px;\
             border-style:solid;background:gray;');    
             insideComp.setAttribute('id',index);            //for identify the point
             insideComp.addEventListener("mouseenter",function(){insideComp.style.background='green';});
@@ -68,7 +68,7 @@ function generateGrid(ContainerName, document,row,column){
 };
 
 //function that ask for parameters of new grid area
-function generateButton(ContainerName, document,row,column){    
+function generateButton(ContainerName, document,blocks){    
     const buttonContainer = document.createElement('buttonContainer');
     buttonContainer.setAttribute("style",'display:flex;flex-direction:row;justifyContent:center;align:center;width:100%;background-color:white;');
     //centering buttom
@@ -93,18 +93,21 @@ function generateButton(ContainerName, document,row,column){
 
 function actionButton(){    
     console.log("action");
-    let newrow=prompt("Insert number of rows:");
-    console.log("rows:"+newrow);
-    let newcolumn=prompt("Insert number of columns:");
-    console.log("columns:"+newcolumn);
-
+    let blocks=prompt("Insert number of squares per side:");       
+    if (blocks>100){
+        blocks=100;
+    }
+    if(blocks==0 || blocks==null){
+        blocks=16;
+    }
+    
     //looking for child
     var nested = document.getElementById("GridContainerId");
 
     //removing previus grid
     container.removeChild(nested);
     //generate new one
-    generateGrid(container,document,newrow,newcolumn);
+    generateGrid(container,document,blocks);
     
     return;
 }
