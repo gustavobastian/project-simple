@@ -8,7 +8,7 @@ justifyContent:space-between;width:100%;text-content:center;padding-bottom:20px;
 
 const content = document.createElement('div');
 content.classList.add('content');
-content.textContent = 'starting!';
+content.textContent = 'My symple Dom';
 
 
 content.setAttribute('style','display:flex; width:100%;justifyContent:center; flex-direction:row;color:white;font-size:40px;background:blue')
