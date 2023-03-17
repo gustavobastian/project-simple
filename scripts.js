@@ -44,18 +44,23 @@ function generateGrid(ContainerName, document,blocks){
         const gridRow = document.createElement('gridRow');
         gridRow.setAttribute('style',
         'display:flex;justifyContent:center;\
-        flex-direction:row;flex-wrap:none;\
+        flex-direction:row;flex-wrap:nowrap;\
         width:960px;text-content:center;\
         color:blue;\
         border-style:none;background:gray;');    
         gridRow.style.justifyContent='center'; 
+        
         for (let d=0;d<(blocks);d++){ 
             index=i*16+blocks;
+            var altt=(960/blocks)+"px";            
+            console.log("alt:"+altt)
             const insideComp = document.createElement('insideComp');            
             insideComp.setAttribute('style',
             'display:flex;justifyContent:center;\
-            flex-direction:column;padding:10px;\
+            flex-direction:column;padding:0px;\
             border-style:solid;background:gray;');    
+            insideComp.style.height=altt;
+            insideComp.style.width=altt;
             insideComp.setAttribute('id',index);            //for identify the point
             insideComp.addEventListener("mouseenter",function(){insideComp.style.background='green';});
             insideComp.addEventListener("mouseleave",function(){insideComp.style.background='red';});
