@@ -1,6 +1,9 @@
 body{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
     background-color: rgb(212, 210, 210);
-    width: 100%;
+    
 }
 
 .HoverClass1:hover {color: blue !important; background-color: green !important;}

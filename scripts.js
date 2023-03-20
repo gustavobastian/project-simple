@@ -2,13 +2,13 @@
 const container = document.querySelector('#container');
 
 container.setAttribute('style','display:flex;flex-direction:column;\
-justifyContent:space-between;width:100%;text-content:center;padding-bottom:20px;margin-bottom:20px;')
+justifyContent:space-between;width:1000px;text-content:center;padding-bottom:20px;margin-bottom:20px;')
 
 //simple text for starting the layout
 
 const content = document.createElement('div');
 content.classList.add('content');
-content.textContent = 'My symple Dom';
+content.textContent = 'My symple Dom Manipulator';
 
 
 content.setAttribute('style','display:flex; width:100%;justifyContent:center; flex-direction:row;color:white;font-size:40px;background:blue')
